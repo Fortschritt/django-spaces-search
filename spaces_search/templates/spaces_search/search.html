@@ -1,0 +1,50 @@
+{% extends "collab/plugin.html" %}
+
+{% load i18n widget_tweaks %}
+
+{% block content %}
+
+<div class="panel panel-default">
+
+<ul class="list-group media-list media-list-stream">
+
+<li class="list-group-item p-a">
+  <h2 class="m-a-0">{% trans 'Search' %}<small class="text-muted"> {% trans 'in' %} {{ space }}</small></h2>
+
+
+<form action="" method="post" class="m-t-md">{% csrf_token %}
+<div class="form-group">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="input-group">
+				{#<input type="text" class="form-control" placeholder="{% trans 'Search' %}" 				name="search_terms" id="id_search_terms" value=""> #}
+				{{ form.search_terms|add_class:"form-control" }}
+				<span class="input-group-btn">
+					<button class="btn btn-primary" type="submit">{% trans 'Search' %}</button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+</form>
+</li>
+
+
+{% if results %}
+
+{% for result in results %}
+<li class="list-group-item p-a">
+<span class="media-left"><div class="search-result-icon">{{ result.plugin.get_icon }}</div></span>
+<div class="media-body"><a href="{{ result.link }}"><strong>{{ result.title }}</strong></a>
+<div class="media-body-secondary text-muted">{{ result.plugin.title }}</div>
+</div>
+</li>
+
+{% endfor %}
+
+{% endif %}{# results #}
+
+</div>
+{% endblock content %}
+
