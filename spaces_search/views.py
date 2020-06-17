@@ -1,7 +1,8 @@
 from django.apps import AppConfig
-from django.core.urlresolvers import reverse_lazy
 from django.db.models import Model, Q
+from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+
 from spaces.models import SpacePluginRegistry
 
 from .forms import SearchForm
